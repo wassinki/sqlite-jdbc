@@ -314,4 +314,11 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>GitHub Packages</name>
+      <url>https://maven.pkg.github.com/wassinki/sqlite-jdbc</url>
+    </repository>
+  </distributionManagement>
 </project>
