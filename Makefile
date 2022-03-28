@@ -1,6 +1,6 @@
-
 include Makefile.common
 
+DOCKCROSS_TAG=20210625-795dd4d
 RESOURCE_DIR = src/main/resources
 
 .phony: all package native native-all deploy
@@ -154,7 +154,7 @@ alpine-linux64: $(SQLITE_UNPACKED) jni-header
 	docker run $(DOCKER_RUN_OPTS) -ti -v $$PWD:/work xerial/alpine-linux-x86_64 bash -c 'make clean-native native OS_NAME=Linux-Alpine OS_ARCH=x86_64'
 
 linux-arm: $(SQLITE_UNPACKED) jni-header
-	./docker/dockcross-armv5 -a $(DOCKER_RUN_OPTS) bash -c 'make clean-native native CROSS_PREFIX=/usr/xcc/armv5-unknown-linux-gnueabi/bin/armv5-unknown-linux-gnueabi- OS_NAME=Linux OS_ARCH=arm'
+	./docker/dockcross-armv5 -i dockcross/linux-armv5:${DOCKCROSS_TAG} -a $(DOCKER_RUN_OPTS) bash -c 'make clean-native native CROSS_PREFIX=/usr/xcc/armv5-unknown-linux-gnueabi/bin/armv5-unknown-linux-gnueabi- OS_NAME=Linux OS_ARCH=arm'
 
 linux-armv6: $(SQLITE_UNPACKED) jni-header
 	./docker/dockcross-armv6 -a $(DOCKER_RUN_OPTS) bash -c 'make clean-native native CROSS_PREFIX=/usr/xcc/armv6-unknown-linux-gnueabihf/bin/armv6-unknown-linux-gnueabihf- OS_NAME=Linux OS_ARCH=armv6'
